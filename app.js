@@ -252,84 +252,90 @@ var countryCodes =
     "XK": "Kosovo"
   }
 
+//Declare and initialize variables
 
+var firstClick = true;
 
-var testVar = false;
+var keys = Object.keys(countryCodes)
+var randIndex = Math.floor(Math.random() * keys.length)
+var randKey = keys[randIndex]
+var name = countryCodes[randKey]
+var val;
+var randKeyL = randKey.toLowerCase()
 
-function testFunc(){
-    
-    
-    document.getElementById("play").style.display = "none";
-    document.getElementById("input1").style.display = "block";
-    document.getElementById("button1").style.display = "block";
-    document.getElementById("countryIMG").style.display = "block";
-
-
-
-    const keys = Object.keys(countryCodes)
-    const randIndex = Math.floor(Math.random() * keys.length)
-    const randKey = keys[randIndex]
-    const name1 = countryCodes[randKey]
-
-    const randKeyL = randKey.toLowerCase()
-    var countryImage = document.getElementById("countryIMG");
-    countryImage.src = "images/" + randKeyL + ".png";
-    console.log(typeof(randKey))
-    console.log(randKeyL)  
-    console.log(name1)
-    testVar = true; 
-    
-    
-    
-    
-    
-
-  
-    
-}
 
 function changeCountry(){
     
-    const keys = Object.keys(countryCodes)
-    const randIndex = Math.floor(Math.random() * keys.length)
-    const randKey = keys[randIndex]
-    const name = countryCodes[randKey]
-    const val = document.querySelector('input').value;
 
-    const randKeyL = randKey.toLowerCase()
+    //Display actual gameplay and remove play button
 
+    if(firstClick == true){
 
-    if(val == name){
-        console.log("Correct!")
-    }
-    else if(val != name){
-        console.log("[SP] Wrong! The correct answer would have been: " + name)
-    }
-    testVar = false;
-
-
-
-
-    var countryImage = document.getElementById("countryIMG");
-    countryImage.src = "images/" + randKeyL + ".png";
-    console.log(name)
-    console.log(val);  
-
-    
-    
-        
-        
-
-    
-
-    
-    
-    
-    
     document.getElementById("play").style.display = "none";
     document.getElementById("input1").style.display = "block";
     document.getElementById("button1").style.display = "block";
     document.getElementById("countryIMG").style.display = "block";
+
+    document.getElementById("input1").focus();
+    document.getElementById("input1").select();
+
+    //Refer to randomized image
+
+    var countryImage = document.getElementById("countryIMG");
+        countryImage.src = "images/" + randKeyL + ".png";
+        
+    firstClick = false;
+
+    }
+
+    //Actual gameplay loop after the play button is pressed
+
+    else{
+        val = document.querySelector('input').value;
+        console.log(name)   //Solution to current flag
+        console.log(val);   //Show user input
+
+        if(val == name){
+            console.log("Correct!")
+            document.getElementById("indicator").style.display = "block";
+            document.getElementById("indicator").innerHTML = "Richtig!"
+            document.getElementById("indicator").style.color = "green";
+            
+        }
+        else if(val != name){
+            console.log("Wrong! The correct answer would have been: " + name)
+            document.getElementById("indicator").style.display = "block";
+            document.getElementById("indicator").innerHTML = "Falsch! Es war " + name;
+            document.getElementById("indicator").style.color = "red";
+        }
+    
+    keys = Object.keys(countryCodes)
+    randIndex = Math.floor(Math.random() * keys.length)
+    randKey = keys[randIndex]
+    name = countryCodes[randKey]
+    //val = document.querySelector('input').value;
+    randKeyL = randKey.toLowerCase()
+    countryImage = document.getElementById("countryIMG");
+    countryImage.src = "images/" + randKeyL + ".png";
+
+    
+    
+    }
+
+document.getElementById("input1").value = "";
+        
+}
+    
+
+document.addEventListener("keyup", function(event) {
+    if (event.keyCode === 13) {
+        changeCountry();
+    }
+});
+
+    
+    
+    
 
     
     
@@ -338,5 +344,5 @@ function changeCountry(){
 
     
 
-}
+
 
