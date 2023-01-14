@@ -33,6 +33,24 @@ h3{
   font-size: 35px;
 }
 
+#score{
+  color: white;
+  font-size: 35px;
+  position: absolute;top: 84%;
+  left: 10%;
+  transform: translate(-50%, -60%);
+  padding: 10px;
+  box-shadow: 0 0 1rem 0 rgba(0, 0, 0, .2); 
+  border-radius: 5px;
+  background-color: rgba(255, 255, 255, .15); 
+  text-align: left;
+ 
+  
+  
+  
+
+}
+
 
 
 

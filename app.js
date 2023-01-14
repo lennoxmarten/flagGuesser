@@ -85,7 +85,7 @@ var countryCodes =
     "HK": "Hongkong",
     "IN": "Indien",
     "ID": "Indonesien",
-    "IM": "Insel Man",
+    "IM": "Isle of Man",
     "IQ": "Irak",
     "IR": "Iran",
     "IE": "Irland",
@@ -181,7 +181,7 @@ var countryCodes =
     "RE": "Réunion",
     "RW": "Ruanda",
     "RO": "Rumänien",
-    "RU": "Russische Föderation",
+    "RU": "Russland",
     "BL": "Saint-Barthélemy",
     "MF": "Saint-Martin",
     "SB": "Salomonen",
@@ -216,7 +216,7 @@ var countryCodes =
     "SR": "Suriname",
     "SJ": "Svalbard und Jan Mayen",
     "SZ": "Eswatini",
-    "SY": "Syrien, Arabische Republik",
+    "SY": "Syriena",
     "TJ": "Tadschikistan",
     "TZ": "Tansania, Vereinigte Republik",
     "TH": "Thailand",
@@ -241,8 +241,8 @@ var countryCodes =
     "VA": "Vatikanstadt",
     "VE": "Venezuela",
     "AE": "Vereinigte Arabische Emirate",
-    "US": ["Vereinigte Staaten von Amerika", "Vereinigte Staaten", "USA"],
-    "GB": ["Vereinigtes Königreich", "Großbritannien"],
+    "US": "USA",
+    "GB": "Großbritannien",
     "VN": "Vietnam",
     "WF": "Wallis und Futuna",
     "CX": "Weihnachtsinsel",
@@ -262,6 +262,7 @@ var randKey = keys[randIndex]
 var name = countryCodes[randKey]
 var val;
 var randKeyL = randKey.toLowerCase()
+var streak = 0;
 
 
 function changeCountry(){
@@ -300,6 +301,8 @@ function changeCountry(){
             document.getElementById("indicator").style.display = "block";
             document.getElementById("indicator").innerHTML = "Richtig!"
             document.getElementById("indicator").style.color = "green";
+            streak++;
+            document.getElementById("score").innerHTML = "Streak: " + streak;
             
         }
         else if(val != name){
@@ -307,6 +310,8 @@ function changeCountry(){
             document.getElementById("indicator").style.display = "block";
             document.getElementById("indicator").innerHTML = "Falsch! Es war " + name;
             document.getElementById("indicator").style.color = "red";
+            streak = 0;
+            document.getElementById("score").innerHTML = "Streak: " + streak;
         }
     
     keys = Object.keys(countryCodes)
